@@ -13,16 +13,23 @@
  */
 var hasPathSum = function(root, targetSum) {
     if(!root) return false;
-    
     return helper(root, targetSum, 0);
 };
 var helper = function(root, targetSum, ans) {
-    if(!root) return false;
+    if(root === null) 
+        return false;
+    
     
     ans += root.val;
     
-    if(!root.left && !root.right) return ans === targetSum;
+    if(root.left === null && root.right === null) {
+        if(ans === targetSum)
+            return true;
+        return false;
+    }
     
-    return helper(root.left,targetSum, ans) || helper(root.right,targetSum, ans);
+    
+    const leftSum = helper(root.left,targetSum, ans);
+    const rightSum = helper(root.right,targetSum, ans);
+    return leftSum || rightSum;
 }
-
