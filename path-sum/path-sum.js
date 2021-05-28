@@ -12,24 +12,15 @@
  * @return {boolean}
  */
 var hasPathSum = function(root, targetSum) {
-    if(!root) return false;
-    return helper(root, targetSum, 0);
+    return helper(root, targetSum);
 };
-var helper = function(root, targetSum, ans) {
-    if(root === null) 
-        return false;
-    
-    
-    ans += root.val;
-    
-    if(root.left === null && root.right === null) {
-        if(ans === targetSum)
-            return true;
-        return false;
+var helper = function(root, targetSum) {
+    if(!root) return false;
+    targetSum = targetSum - root.val;
+    if(!root.left && !root.right) {
+        return (targetSum == 0);
     }
     
-    
-    const leftSum = helper(root.left,targetSum, ans);
-    const rightSum = helper(root.right,targetSum, ans);
-    return leftSum || rightSum;
+    return helper(root.left, targetSum)
+           || helper(root.right, targetSum);
 }
