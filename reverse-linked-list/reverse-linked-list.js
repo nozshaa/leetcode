@@ -9,7 +9,7 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var reverseListold = function(head) {
+var reverseListIterative = function(head) {
     let curr = head;
     // 1->2->3->4->5->null 
     // 1->null   2->3->4->5->null
@@ -27,16 +27,19 @@ var reverseListold = function(head) {
     return prev;
 };
 var reverseList = function(head) {
-    if(!head) return null;
     
-    let prev = null;
-    let curr = head;
-    
-    while(curr) {
-        const temp = curr.next;
-        curr.next = prev;
-        prev = curr;
-        curr = temp;
+    var reverseRecursion = function(p) {
+        // Exit condition
+        if(!p || !p.next) {
+            head = p;
+            return head;
+        }
+        reverseRecursion(p.next);
+        let q = p.next;
+        q.next = p;
+        p.next = null;
+        return head;
     }
-    return prev;
+    return reverseRecursion(head);
+
 }
