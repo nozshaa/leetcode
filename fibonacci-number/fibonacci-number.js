@@ -2,6 +2,22 @@
  * @param {number} n
  * @return {number}
  */
+// var fib = function(n, memo = new Map()) {
+//     if (n === 0) {
+//         return 0;
+//     }
+//     if (n === 1) {
+//         return 1;
+//     }
+//     if (memo.has(n)) {
+//         return memo.get(n);
+//     }
+//     let res = fib(n-1, memo) + fib(n-2, memo);
+//     memo.set(n, res);
+//     return res;
+//     // T.C: O(N)
+//     // S.C: O(N)
+// };
 var fib = function(n) {
     let memoize = memoizeFib();
     return memoize(n);
@@ -12,12 +28,9 @@ var memoizeFib = function() {
         if(n < 2) {
             return n;
         }
-        const p1 = fibo(n - 1);
-        cache[n - 1] = p1;
-        const p2 = fibo(n - 2);
-        cache[n - 2] = p2;
-        cache[n] = p1 + p2;
-        return p1 + p2;
+        const result = fibo(n - 1) + fibo(n - 2);
+        cache[n] = result;
+        return result;
     }
     
     return (n) => {
