@@ -13,19 +13,13 @@
  */
 var searchBST = function(root, val) {
     if(!root) return null;
-    return searchInBst(root, val);
-};
-var searchInBst = function(root, val) {
-    if(!root) {
-        return null;
-    }
     
-    if(root.val > val) {
-        return searchInBst(root.left, val);
-    } else if(root.val < val) {
-        return searchInBst(root.right, val);
-    }else {
-        // console.log(root.val);
+    if(val === root.val) {
+        console.log(root.val);
         return root;
+    } else if(val > root.val) {
+        return searchBST(root.right, val);
+    } else {
+        return searchBST(root.left, val);
     }
-}
+};
