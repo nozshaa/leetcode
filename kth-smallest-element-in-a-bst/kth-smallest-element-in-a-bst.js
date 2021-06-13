@@ -23,8 +23,9 @@ var getKthNode = function(node, k, treeInfo) {
     if(treeInfo.numberOfNodeVisited < k) {
         treeInfo.numberOfNodeVisited ++;
         treeInfo.latestVisitedNodeValue = node.val;
+        getKthNode(node.right, k, treeInfo);
     }
-    getKthNode(node.right, k, treeInfo);
+   
 }
 class TreeInfo {
     constructor(numberOfNodeVisited, latestVisitedNodeValue) {
