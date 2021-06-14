@@ -9,18 +9,16 @@ var search = function(nums, target) {
     
 };
 var bstSearch = function(nums, target, left, right) {
-    const mid = Math.floor((left+right)/2);
     if(left > right) {
         return -1;
     }
+    
+    const mid = Math.floor((left+right)/2);
     if(target === nums[mid]) {
-        console.log(mid);
         return mid;
     }
     
-    if(target > nums[mid]) {
-        return bstSearch(nums, target, mid + 1, right);
-    } else {
-        return bstSearch(nums, target, left, mid - 1);
-    }
+    return target > nums[mid] ? 
+            bstSearch(nums, target, mid + 1, right) : 
+            bstSearch(nums, target, left, mid - 1);
 }
