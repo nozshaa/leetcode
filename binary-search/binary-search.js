@@ -4,25 +4,23 @@
  * @return {number}
  */
 var search = function(nums, target) {
-    return searchI(nums, target);
-};
-var searchI = function(nums, target) {
-    let l = 0;
-    let h = nums.length - 1;
     
-    while(l<=h){
-        
-        const mid = Math.floor((l + h) /2);
-        const num = nums[mid]
-        
-        if(target===num){
-            return mid;
-        } else if(target<num){
-            h=mid-1;
-        } else{
-            l=mid+1;
-        }
+    return bstSearch(nums, target, 0, nums.length -1);
+    
+};
+var bstSearch = function(nums, target, left, right) {
+    const mid = Math.floor((left+right)/2);
+    if(left > right) {
+        return -1;
+    }
+    if(target === nums[mid]) {
+        console.log(mid);
+        return mid;
     }
     
-    return -1;
+    if(target > nums[mid]) {
+        return bstSearch(nums, target, mid + 1, right);
+    } else {
+        return bstSearch(nums, target, left, mid - 1);
+    }
 }
